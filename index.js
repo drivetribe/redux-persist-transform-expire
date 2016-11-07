@@ -20,6 +20,8 @@ module.exports = function (config) {
   function outbound (state) {
     if (!state) return state;
 
+    var dateNow = dateToUnix(new Date())
+
     var validState = traverse(state).forEach(function (value) {
       if (!value || typeof value !== 'object') {
         return;
@@ -35,7 +37,7 @@ module.exports = function (config) {
         return;
       }
 
-      if (dateToUnix(new Date(expireDate)) < dateToUnix(new Date())) {
+      if (dateToUnix(new Date(expireDate)) < dateNow) {
         this.remove();
       }
     });
