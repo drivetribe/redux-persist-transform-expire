@@ -36,7 +36,7 @@ module.exports = function (config) {
       }
 
       if (dateToUnix(new Date(expireDate)) < dateToUnix(new Date())) {
-        this.update({});
+        this.remove();
       }
     });
 

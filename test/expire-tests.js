@@ -79,11 +79,7 @@ describe('Redux persists transform expire', function () {
     expect(inboundOutputState).to.eql(state);
     expect(outboundOutputState).to.eql({
       app: {
-        reducer: {
-          data: {
-
-          }
-        }
+        reducer: {}
       }
     });
 
@@ -117,8 +113,6 @@ describe('Redux persists transform expire', function () {
       app: {
         reducer: {
           data: [{
-          },
-          {
             values: [5, 6],
             persistExpiresAt: notExpiredDate
           }]
@@ -145,7 +139,7 @@ describe('Redux persists transform expire', function () {
     var outboundOutputState = transform.out(state);
 
     expect(inboundOutputState).to.eql(state);
-    expect(outboundOutputState).to.eql({ app: {} });
+    expect(outboundOutputState).to.eql({});
 
     done();
   });
@@ -195,11 +189,7 @@ describe('Redux persists transform expire', function () {
     expect(inboundOutputState).to.eql(state);
     expect(outboundOutputState).to.eql({
       app: {
-        reducer: {
-          data: {
-
-          }
-        }
+        reducer: {}
       }
     });
 
