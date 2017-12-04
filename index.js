@@ -6,7 +6,6 @@ var PERSIST_EXPIRE_DEFAULT_KEY = 'persistExpiresAt';
 module.exports = function (config) {
   config = config || {};
   config.expireKey = config.expireKey || PERSIST_EXPIRE_DEFAULT_KEY;
-  config.defaultState = config.defaultState || {};
 
   function dateToUnix (date) {
     return +(date.getTime() / 1000).toFixed(0);
@@ -39,7 +38,11 @@ module.exports = function (config) {
       }
 
       if (dateToUnix(new Date(expireDate)) < dateNow) {
-        this.update(config.defaultState);
+        if (this.notRoot) {
+          this.remove();
+        } else {
+          this.update(undefined);
+        }
       }
     });
 
